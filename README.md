@@ -2,6 +2,11 @@
 
 This project was bootstrapped with [Serveless Template](https://github.com/defensadev/sls_template).
 
+Run the following commands in order to get started
+
+- `yarn`
+- `yarn build-scripts`
+
 ## Creating A New Lambda Function
 
 Create a file in the **src** directory called "myNewFunction.lambda.ts"
@@ -93,6 +98,10 @@ export default example;
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `yarn build-scripts`
+
+Build the later scripts like "build" and "deploy"
 
 ### `yarn build`
 

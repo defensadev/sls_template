@@ -5,7 +5,8 @@
   "scripts": {
     "build": "node ./scripts/dist/build",
     "deploy": "node ./scripts/dist/deploy",
-    "build-scripts": "node ./scripts/build-scripts.js"
+    "build-scripts": "node ./scripts/build-scripts",
+    "postinstall": "node ./scripts/build-scripts"
   },
   "devDependencies": {
     "@aws-sdk/client-lambda": "^3.238.0",
