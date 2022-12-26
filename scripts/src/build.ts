@@ -1,3 +1,4 @@
+import readConfig from "./readConfig";
 import builder from "./builder";
 
-builder().catch(console.error);
+readConfig().then(builder).catch(console.error);

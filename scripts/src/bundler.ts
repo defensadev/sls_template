@@ -1,8 +1,9 @@
+import type { Lambda } from "./findLambdas";
+import type { Config } from "./readConfig";
 import { analyzeMetafile, build } from "esbuild";
 import { envPlugin } from "./env";
-import { Lambda } from "./findLambdas";
 
-const bundler = async (lambda: Lambda): Promise<null> => {
+const bundler = async (lambda: Lambda, config: Config): Promise<null> => {
   const { metafile } = await build({
     bundle: true,
     entryPoints: [lambda.unbundled],
@@ -12,6 +13,7 @@ const bundler = async (lambda: Lambda): Promise<null> => {
     minify: true,
     plugins: [envPlugin],
     outfile: lambda.bundled,
+    target: config.target,
     treeShaking: true,
   });
   console.log(await analyzeMetafile(metafile, { color: true }));

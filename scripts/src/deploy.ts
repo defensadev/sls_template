@@ -4,12 +4,14 @@ import {
   UpdateFunctionCodeCommand,
 } from "@aws-sdk/client-lambda";
 import dotenv from "dotenv";
+import readConfig from "./readConfig";
 import findLambdas from "./findLambdas";
 import builder from "./builder";
 dotenv.config();
 
 const main = async (): Promise<null> => {
-  await builder();
+  const config = await readConfig();
+  await builder(config);
 
   const scriptName = process.argv[2] as string | undefined;
   const lambdas = await findLambdas();
@@ -36,11 +38,11 @@ const main = async (): Promise<null> => {
 
   const zipFile = await fs.promises.readFile(script.zip);
 
-  const client = new LambdaClient({ region: "us-east-1" });
+  const client = new LambdaClient({ region: config.region });
   const response = await client.send(
     new UpdateFunctionCodeCommand({
       FunctionName: arn,
-      Architectures: ["arm64"],
+      Architectures: config.architectures,
       DryRun: false,
       ZipFile: zipFile,
     })

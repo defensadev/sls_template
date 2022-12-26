@@ -1,3 +1,4 @@
+import type { Config } from "./readConfig";
 import dotenv from "dotenv";
 import typechecker from "./typechecker";
 import linter from "./linter";
@@ -9,7 +10,7 @@ import bundler from "./bundler";
 import zip from "./zip";
 dotenv.config();
 
-const builder = async (): Promise<null> => {
+const builder = async (config: Config): Promise<null> => {
   await typechecker();
   await linter();
   await checkEnv();
@@ -18,7 +19,7 @@ const builder = async (): Promise<null> => {
 
   for (const lambda of lambdas) {
     await renderUnbundled(lambda);
-    await bundler(lambda);
+    await bundler(lambda, config);
     await zip(lambda);
   }
 
