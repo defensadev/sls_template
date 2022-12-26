@@ -36,11 +36,15 @@ The **_`sls.config.json`_** contains configuration related to the build and depl
 - target - Controls the node version target, as of Dec. 2022 the most recent supported node version on aws lambda is "Node18".
 - architectures - Controls the architectures for aws lambda as of Dec. 2022 only "arm64" and "x86_64" are supported.
 
+#### Types of fields
+
 - region: string
 - target: string
 - architectures: string[]
 
 An example config that is the default:
+
+#### **_`sls.config.json`_**
 
 ```json
 {
