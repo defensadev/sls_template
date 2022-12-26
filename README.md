@@ -54,6 +54,42 @@ An example config that is the default:
 }
 ```
 
+## Understanding **_Psuedo Packages_**
+
+There are two default **_Psuedo Packages_**
+
+- _@env_ - Import enviroment variables into your bundled code
+- _@lambda_ - Utility types for your lambda functions
+
+### Using _@env_
+
+Create a file called ".env" and place a variable called "MY_ENV_VAR" setting it to whatever you want
+
+#### **_`.env`_**
+
+```
+MY_ENV_VAR=some_value
+```
+
+#### **_`example.lambda.ts`_**
+
+```ts
+import type { Lambda } from "@lambda";
+import env from "@env";
+import { createHash } from "crypto";
+
+const example: Lambda<string> = async () => {
+  // accessing the MY_ENV_VAR inside .env file.
+  const MY_ENV_VAR = env.MY_ENV_VAR;
+
+  // hashing and salting the variable and returning it in hex representation.
+  hash.update("my salt" + MY_ENV_VAR + "my salt");
+  return hash.digest("hex");
+};
+
+export default example;
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
