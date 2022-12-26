@@ -1,0 +1,35 @@
+{
+  "name": "sls_template",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "node ./scripts/dist/build",
+    "deploy": "node ./scripts/dist/deploy",
+    "build-scripts": "node ./scripts/build-scripts.js"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-lambda": "^3.238.0",
+    "@types/archiver": "^5.3.1",
+    "@types/aws-lambda": "^8.10.109",
+    "@types/eslint": "^8.4.10",
+    "@types/node": "^18.11.17",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
+    "acorn": "^8.8.1",
+    "acorn-walk": "^8.2.0",
+    "archiver": "^5.3.1",
+    "dotenv": "^16.0.3",
+    "esbuild": "^0.16.10",
+    "esbuild-node-externals": "^1.6.0",
+    "eslint": "^8.30.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "globby": "^13.1.3",
+    "ts-morph": "^17.0.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "aws-lambda": "^1.0.7"
+  }
+}

@@ -1,0 +1,34 @@
+import app from "#src";
+
+export const handler = async (req, context) => {
+    try {
+        const res = await app(req, context);
+        if (Object.hasOwn(res, "statusCode") && Object.hasOwn(res, "body") && Object.hasOwn(res, "headers") && Object.hasOwn(res, "isBase64Encoded")) {
+            return res;
+        }
+
+        return { 
+            statusCode: 400,
+            body: {
+                type: "Ok",
+                value: typeof res !== "string" ? JSON.stringify(res) : res,
+            },
+            headers: {
+                "Content-Type": "application/json",
+            },
+            isBase64Encoded: false,
+        };
+    } catch (err) {
+        return {
+            statusCode: 400,
+            body: {
+                type: "Err",
+                value: err.message,
+            },
+            headers: {
+                "Content-Type": "application/json",
+            },
+            isBase64Encoded: false,
+        };
+    }
+};
