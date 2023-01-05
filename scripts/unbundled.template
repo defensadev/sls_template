@@ -8,7 +8,7 @@ export const handler = async (req, context) => {
         }
 
         return { 
-            statusCode: 400,
+            statusCode: 200,
             body: {
                 type: "Ok",
                 value: typeof res !== "string" ? JSON.stringify(res) : res,
@@ -19,6 +19,10 @@ export const handler = async (req, context) => {
             isBase64Encoded: false,
         };
     } catch (err) {
+        if (Object.hasOwn(err, "statusCode") && Object.hasOwn(err, "body") && Object.hasOwn(err, "headers") && Object.hasOwn(err, "isBase64Encoded")) {
+            return err;
+        }
+
         return {
             statusCode: 400,
             body: {

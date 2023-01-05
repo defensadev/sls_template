@@ -5,6 +5,9 @@ This project was bootstrapped with [Serveless Template](https://github.com/defen
 Run the following commands in order to get started
 
 - `yarn`
+
+If for some reason "build-scripts" doesn't run after installing with yarn you can run it manually:
+
 - `yarn build-scripts`
 
 ## Creating A New Lambda Function
